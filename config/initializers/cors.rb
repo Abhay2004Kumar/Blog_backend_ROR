@@ -17,7 +17,8 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:3001'
+    # Allow both local development and production frontend
+    origins ENV.fetch('FRONTEND_URL', 'http://localhost:3001').split(',')
 
     resource '*',
       headers: :any,
