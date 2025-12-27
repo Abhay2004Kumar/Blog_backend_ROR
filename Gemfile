@@ -33,8 +33,9 @@ gem 'jsonapi-serializer'
 # gem for documentation
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rswag'
 end
+
+gem 'rswag'
 
 # dotenv for environment variables
 gem 'dotenv-rails', groups: [:development, :test]
