@@ -91,18 +91,16 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: blog_backend_production
-    username: blog_backend
-    password: <%= ENV["BLOG_BACKEND_DATABASE_PASSWORD"] %>
+    database: <%= ENV.fetch("DATABASE_NAME", "blog_backend_production") %>
   cache:
     <<: *primary_production
-    database: blog_backend_production_cache
+    database: <%= ENV.fetch("DATABASE_NAME", "blog_backend") %>_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: blog_backend_production_queue
+    database: <%= ENV.fetch("DATABASE_NAME", "blog_backend") %>_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: blog_backend_production_cable
+    database: <%= ENV.fetch("DATABASE_NAME", "blog_backend") %>_production_cable
     migrations_paths: db/cable_migrate
